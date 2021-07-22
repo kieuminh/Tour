@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Comment">
+	<resultMap type="comment" id="commentMap">
+		<id property="id" column="id"/>
+		<result property="content" column="content"/>
+		<result property="date" column="date"/>
+		
+		<association property="usertour" column="usertour_id"
+			javaType="user" select="UserTour.selectOne"></association>
+		<association property="blog" column="blog_id"
+			javaType="blog" select="Blog.selectOne"></association>
+	</resultMap>
+	
+	<select id="selectList" resultMap="commentMap">
+		SELECT * FROM comment, blog, user_tour
+		WHERE comment.blog_id = blog.id and comment.usertour_id = usertour.id
+	</select>
+	<insert id="insert" parameterType="comment">
+		INSERT INTO comment( blog_id, content, usertour_id) 
+		VALUES (#{blog.id}, #{content}, #{usertour.id})
+	</insert>
+	<select id="selectListByBlog" resultMap="commentMap">
+		SELECT comment.id, comment.content, comment.blog_id, comment.date, user_tour.id As user, user_tour.avatar, 
+				user_tour.username 
+		FROM comment, user_tour  
+		WHERE comment.blog_id = #{blog.id} and 
+			comment.usertour_id = user_tour.id
+	</select>
+	<select id="selectUserByBlogComment" resultMap="commentMap">
+		SELECT user_tour.id , user_tour.avatar, user_tour.username, comment.*
+		FROM comment, user_tour
+		WHERE comment.usertour_id = user_tour.id
+				and comment.blog_id=#{blog_id}  
+	</select>
+	
+	
+</mapper>

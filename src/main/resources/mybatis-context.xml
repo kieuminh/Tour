@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Alias of Type -->
+	<typeAliases>
+		<!-- <typeAlias alias="blogger" type="com.ngoc.springmvc.entity.BloggerVO"/>  ví dụ--> 
+		<typeAlias alias="vehicle" type="com.hakunamatata.springmvc.entity.Vehicle"/>
+		<typeAlias alias="department" type="com.hakunamatata.springmvc.entity.Department"/>
+		<typeAlias alias="tour" type="com.hakunamatata.springmvc.entity.Tour"/>
+		<typeAlias alias="place" type="com.hakunamatata.springmvc.entity.Place"/>
+		<typeAlias alias="hotel" type="com.hakunamatata.springmvc.entity.Hotel"/>
+		<typeAlias alias="discount" type="com.hakunamatata.springmvc.entity.Discount"/>
+		<typeAlias alias="cattour" type="com.hakunamatata.springmvc.entity.CatTour"/>
+		<typeAlias alias="province" type="com.hakunamatata.springmvc.entity.Province"/>
+		<typeAlias alias="tourplace" type="com.hakunamatata.springmvc.entity.TourPlace"/>
+		<typeAlias alias="tourdiscount" type="com.hakunamatata.springmvc.entity.TourDiscount"/>
+		<typeAlias alias="blog" type="com.hakunamatata.springmvc.entity.Blog"/> 
+		<typeAlias alias="user" type="com.hakunamatata.springmvc.entity.UserTour"/>
+		<typeAlias alias="comment" type="com.hakunamatata.springmvc.entity.Comment"/> 
+		<typeAlias alias="likeblog" type="com.hakunamatata.springmvc.entity.LikeBlog"/>
+		<typeAlias alias="user_role" type="com.hakunamatata.springmvc.entity.UserRole"/>  
+		<typeAlias alias="book" type="com.hakunamatata.springmvc.entity.Book"/>
+		<typeAlias alias="ticket"	type="com.hakunamatata.springmvc.entity.Ticket"/>
+
+	</typeAliases>		
+
+	<!--Mapper (sql statement )list -->
+	<mappers>
+		<mapper resource="mapper/department-mapper.xml"/> 		
+		<!-- <mapper resource="mapper/blogger-mapper.xml"/>  ví dụ-->
+		<mapper resource="mapper/vehicle-mapper.xml"/>
+		<mapper resource="mapper/department-mapper.xml"/> 	
+		<mapper resource="mapper/tour-mapper.xml"/>
+		<mapper resource="mapper/department-mapper.xml"/> 		
+		<mapper resource="mapper/blog-mapper.xml"/>
+		<mapper resource="mapper/user-mapper.xml"/>
+		<mapper resource="mapper/hotel-mapper.xml"/> 	
+		<mapper resource="mapper/place-mapper.xml"/>
+		<mapper resource="mapper/province-mapper.xml"/>
+		<mapper resource="mapper/discount-mapper.xml"/>
+		<mapper resource="mapper/tour-place-mapper.xml"/>
+		<mapper resource="mapper/tour-discount-mapper.xml"/>
+		<mapper resource="mapper/comment-mapper.xml"/>
+		<mapper resource="mapper/likeblog-mapper.xml"/>
+		<mapper resource="mapper/role-mapper.xml"/>
+		<mapper resource="mapper/book-mapper.xml"/>
+		<mapper resource="mapper/ticket-mapper.xml"/>
+	</mappers>
+	
+</configuration>

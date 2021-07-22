@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	@author BaoBB
+-->
+<mapper namespace="Hotel">
+	<resultMap type="hotel" id="hotelMap">
+		<id property="id" column="id"/>
+		<result property="type" column="type"/>
+		<result property="name" column="name"/>
+		<result property="image" column="image"/>
+		<result property="address" column="address"/>
+	</resultMap>
+	<select id="selectList" parameterType="hotel" resultType="hotel">
+		<![CDATA[
+			SELECT * FROM hotel
+		]]>
+	</select>
+	<select id="selectOne" parameterType="hotel" resultType="hotel">
+		<![CDATA[
+			SELECT * FROM hotel
+			WHERE id = #{id}
+		]]>
+	</select>
+	<insert id="insert" parameterType="hotel">
+		INSERT INTO hotel (type, name, image, address) 
+		VALUES (#{type}, #{name}, #{image}, #{address})	
+	</insert>
+	<update id="update" parameterType="hotel">
+		UPDATE hotel SET type=#{type}, name=#{name}, image=#{image}, address=#{address}  
+		WHERE id=#{id}
+	</update>
+	<delete id="delete" parameterType="hotel">
+		DELETE FROM hotel WHERE id=#{id}
+	</delete>
+</mapper>

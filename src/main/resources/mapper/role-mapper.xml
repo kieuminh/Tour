@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Role">
+	<resultMap type="user_role" id="roleMap">
+		<id property="id" column="id"/>
+		<result property="role" column="role"/>
+	</resultMap>
+	<select id="selectList" parameterType="user_role" resultType="user_role">
+		<![CDATA[
+			SELECT * 
+			FROM user_role 
+		]]>
+	</select>
+	<select id="selectOne" parameterType="user_role" resultType="user_role">
+		<![CDATA[
+			SELECT * 
+			FROM user_role Where id= #{id}
+		]]>
+	</select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LikeBlog">
+	<resultMap type="likeblog" id="likeblogMap">
+		<id property="id" column="id" />
+		<association property="blog" column="blog_id"
+			javaType="blog" select="Blog.selectOne"></association>
+		<association property="usertour" column="usertour_id"
+			javaType="user" select="UserTour.selectOne"></association>
+	</resultMap>
+	
+	<insert id="insert">
+		INSERT INTO like_blog(blog_id, usertour_id) 
+		VALUES (#{blog.id}, #{usertour.id})
+	</insert>
+	<update id="updateBlog" parameterType="HashMap">
+		UPDATE blog SET like_amount=#{like_amount} WHERE blog.id = #{id}
+	</update>
+</mapper>

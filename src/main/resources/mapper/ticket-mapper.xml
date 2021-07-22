@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Ticket">
+	<resultMap type="ticket" id="ticketMap">
+		<id property="id" column="tk_id"/>
+		<result property="name" column="tk_name"/>
+		<result property="email" column="tk_email"/>
+		<result property="ticket_code" column="tk_ticket_code"/>
+		<result property="phone" column="tk_phone"/>
+		<result property="state" column="tk_state"/>
+		<result property="giveDate" column="tk_giveDate"/>
+		<result property="unitprice" column="tk_unitprice"/>
+		<association property="book" javaType="book"
+		column="tk_book_id" select="Book.selectOne"
+		></association>
+	</resultMap>
+
+<select id="selectAll" resultMap="ticketMap">
+	SELECT tk.id AS tk_id,tk.book_id AS tk_book_id,tk.name AS tk_name,tk.email AS tk_email,
+						tk.ticket_code AS tk_ticket_code,tk.phone AS tk_phone,tk.state AS tk_state,
+						tk.giveDate AS tk_giveDate,tk.unitprice AS tk_unitprice 
+						FROM ticket AS tk
+</select>
+
+<select id="selectOne" resultMap="ticketMap">
+	SELECT tk.id AS tk_id,tk.book_id AS tk_book_id,tk.name AS tk_name,tk.email AS tk_email,
+						tk.ticket_code AS tk_ticket_code,tk.phone AS tk_phone,tk.state AS tk_state,
+						tk.giveDate AS tk_giveDate,tk.unitprice AS tk_unitprice 
+						FROM ticket AS tk where tk.id = #{id}
+</select>
+
+<select id="selectByBookId" resultMap="ticketMap" parameterType="Integer"> 
+SELECT tk.id AS tk_id,tk.book_id AS tk_book_id,tk.name AS tk_name,tk.email AS tk_email,
+						tk.ticket_code AS tk_ticket_code,tk.phone AS tk_phone,tk.state AS tk_state,
+						tk.giveDate AS tk_giveDate,tk.unitprice AS tk_unitprice 
+						FROM ticket AS tk where tk.book_id = #{id}
+</select>
+
+<insert id="insert" parameterType="ticket">
+	INSERT INTO  ticket(book_id,NAME,email,ticket_code,phone,state,giveDate,unitprice)
+	 VALUES(#{book.id},#{name},#{email},#{ticket_code},#{phone},#{state},#{giveDate},#{unitprice})
+</insert>
+
+<delete id="delete">
+	DELETE FROM ticket WHERE id = #{id}
+</delete>
+
+<update id="update">
+	Update ticket SET  book_id=#{book.id},name=#{name},
+	email=#{email},ticket_code=#{ticket_code},phone=#{phone},
+	state=#{state},giveDate={giveDate},unitprice=#{unitprice} 
+	where id=#{id}
+</update>
+<update id="updateState" parameterType="ticket">
+	Update ticket SET state= true 
+	where book_id=#{book.id}
+</update>
+</mapper>

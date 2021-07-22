@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserTour">
+	<resultMap type="user" id="userMap">
+		<id property="id" column="ID"/>
+		<result property="username" column="username"/>
+		<result property="passwd" column="passwd"/>
+		<result property="cusname" column="cusname"/>
+		<result property="phone" column="phone"/>
+		<result property="birthday" column="birthday"/>
+		<result property="address" column="address"/>
+		<result property="email" column="email"/>
+		<result property="avatar" column="avatar"/>
+		<result property="state" column="state"/>
+		<association property="user_role"
+					 column="user_role"
+					 javaType="user_role"
+					 select="Role.selectOne"/>
+	</resultMap>
+
+	<select id="selectOne" parameterType="user" resultMap="userMap">
+		SELECT * FROM user_tour WHERE id=#{id}
+	</select>
+	<select id="login" parameterType="user" resultMap="userMap">
+		SELECT * FROM user_tour WHERE username=#{username} and passwd=#{passwd}
+	</select>
+	<select id="checkUserName" parameterType="user" resultMap="userMap">
+		SELECT * FROM user_tour WHERE username=#{username}
+	</select>
+	<select id="selectList" parameterType="user" resultMap="userMap">
+		<![CDATA[
+			SELECT * FROM user_tour
+		]]>
+	</select>
+
+	<insert id="insert" parameterType="user">
+		INSERT INTO user_tour (username, passwd, cusname, phone, birthday, address, email, avatar, user_role, state) 
+		VALUES (#{username}, #{passwd}, #{cusname}, #{phone}, #{birthday}, #{address}, #{email}, #{avatar}, #{user_role.id}, #{state})	
+	</insert>
+
+	<update id="update" parameterType="user">
+		UPDATE user_tour SET username=#{username}, passwd=#{passwd},
+		 					cusname=#{cusname}, phone=#{phone}, birthday= #{birthday}, address= #{address}
+		 					,email=#{email}, avatar=#{avatar}, user_role=#{user_role.id}
+		 					,state=#{state}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="user">
+		DELETE FROM user_tour WHERE id=#{id}
+	</delete>
+
+</mapper>

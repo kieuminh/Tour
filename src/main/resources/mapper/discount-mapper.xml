@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	@author BaoBB
+-->
+<mapper namespace="Discount">
+	<resultMap type="discount" id="discountMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="scope" column="scope"/>
+		<result property="start_day" column="start_day"/>
+		<result property="end_day" column="end_day"/>
+	</resultMap>
+	<select id="selectList" parameterType="discount" resultType="discount">
+		<![CDATA[
+			SELECT * FROM discount
+		]]>
+	</select>
+	<select id="selectOne" parameterType="discount" resultType="discount">
+		<![CDATA[
+			SELECT * FROM discount
+			WHERE id = #{id}
+		]]>
+	</select>
+	<insert id="insert" parameterType="discount">
+		INSERT INTO discount (name, scope, start_day, end_day) 
+		VALUES (#{name}, #{scope}, #{start_day}, #{end_day})	
+	</insert>
+	<update id="update" parameterType="discount">
+		UPDATE discount SET name=#{name}, scope=#{scope}, start_day=#{start_day}, end_day=#{end_day}
+		WHERE id=#{id}
+	</update>
+	<delete id="delete" parameterType="discount">
+		DELETE FROM discount WHERE id=#{id}
+	</delete>
+</mapper>

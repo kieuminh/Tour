@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	@author BaoBB
+-->
+<mapper namespace="Place">
+	<resultMap type="place" id="placeMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+	<!--	<result property="province_id" column="province_id"/>-->
+		<result property="address" column="address"/>
+		<result property="image" column="image"/>
+		<result property="description" column="description"/>
+		<association property="province"
+					 column="province_id"
+					 javaType="province"
+					 select="Province.selectOne"/>		
+	</resultMap>
+	<!---->
+	<select id="selectList" parameterType="place" resultMap="placeMap">
+		<![CDATA[
+					SELECT * FROM place
+		]]>
+	</select>
+	
+	<select id="selectOne" parameterType="place" resultMap="placeMap">
+		<![CDATA[
+			SELECT *
+			FROM place
+			WHERE id = #{id}
+		]]>
+	</select>
+	
+	
+	
+	<insert id="insert" parameterType="place">
+		INSERT INTO place (name, province_id, address, image, description) 
+		VALUES (#{name}, #{province.id}, #{address}, #{image}, #{description})	
+	</insert>
+	
+	<update id="update" parameterType="place">
+		UPDATE place SET name=#{name}, province_id=#{province.id}, address=#{address}, image=#{image}, description=#{description}
+		WHERE id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="place">
+		DELETE FROM place WHERE id=#{id}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TourDiscount">
+	<resultMap type="tourdiscount" id="tourdiscountMap">
+		<id property="id" column="id" />
+		<association property="discount" column="discount_id"
+			javaType="discount" select="Discount.selectOne"></association>
+		<association property="tour" column="tour_id"
+			javaType="tour" select="Tour.selectOne"></association>
+	</resultMap>
+
+	<insert id="insert" parameterType="java.util.List">
+		INSERT INTO tour_discount(tour_id,discount_id) VALUES
+		<foreach collection="list" item="element" open=''
+			separator=',' close=''>
+			(#{element.tour.id},#{element.discount.id})
+		</foreach>
+
+	</insert>
+	<update id="update">
+		UPDATE tour_discount SET tour_id=#{tour.id},
+		discount_id=#{discount.id}
+		WHERE id=#{id}
+	</update>
+	<delete id="delete" parameterType="java.util.List">
+		DELETE FROM tour_discount WHERE
+
+		<foreach item="item" index="index" collection="list" open="("
+			close=")" separator="OR">
+			id=#{item.id}
+		</foreach>
+	</delete>
+</mapper>

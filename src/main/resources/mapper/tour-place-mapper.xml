@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TourPlace">
+	<resultMap type="tourplace" id="tourplaceMap">
+		<id property="id" column="id" />
+		<association property="place" column="place_id"
+			javaType="place" select="Place.selectOne"></association>
+		<association property="tour" column="tour_id"
+			javaType="tour" select="Tour.selectOne"></association>
+	</resultMap>
+	<select id="getList" parameterType="tourplace"
+		resultMap="tourplaceMap">
+		SELECT * FROM tour_place
+	</select>
+	<insert id="insert" parameterType="java.util.List">
+		INSERT INTO tour_place(tour_id,place_id) VALUES
+		<foreach collection="list" item="element" open=''
+			separator=',' close=''>
+			(#{element.tour.id},#{element.place.id})
+		</foreach>
+
+	</insert>
+	<update id="update">
+		UPDATE tour_place SET tour_id=#{tour.id},
+		place_id=#{place.id}
+		WHERE id=#{id}
+	</update>
+	<delete id="delete"  parameterType="java.util.List">
+		DELETE FROM tour_place WHERE 
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator="OR">
+	       id=#{item.id}
+	    </foreach>
+	</delete>
+	<select id="getPlace" resultMap="Place.placeMap">
+		SELECT place.id, place.name, place.image, place.description, place.address
+		FROM tour_place, place, tour
+		WHERE tour_id=#{tour.id} and place.id = tour_place.place_id and tour.id=tour_place.tour_id
+	</select>
+	
+</mapper>

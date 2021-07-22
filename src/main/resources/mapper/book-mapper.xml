@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Book">
+	<resultMap type="book" id="bookMap">
+		<id property="id" column="b_id" />
+		<result property="total_money" column="b_total_money" />
+		<result property="child_amount" column="b_child_amount" />
+		<result property="aldult_amount" column="b_aldult_amount" />
+		<result property="child_nho_amount" column="b_child_nho_amount" />
+		<result property="date" column="b_date" />
+		<association property="tour" javaType="tour"
+			column="b_tour_id" select="Tour.selectOne">
+		</association>
+		<association property="usertour" column="b_user_id"
+			javaType="user" select="UserTour.selectOne"></association>
+	</resultMap>
+	<insert id="insert" parameterType="book">
+		INSERT INTO
+		book(usertour_id,total_money,child_amount,aldult_amount,child_nho_amount,tour_id,date)
+		VALUES(#{usertour.id},#{total_money},#{child_amount},#{aldult_amount},#{child_nho_amount},#{tour.id},#{date})
+	</insert>
+
+	<select id="selectAll" resultMap="bookMap">
+		SELECT  b.id AS b_id,b.usertour_id AS b_user_id,
+		b.total_money AS b_total_money,b.child_amount AS b_child_amount,b.aldult_amount AS b_aldult_amount,
+ 		b.child_nho_amount AS b_child_nho_amount,b.tour_id AS b_tour_id,b.date AS b_date
+  		FROM book AS b
+	</select>
+	
+	<select id="selectMax" resultMap="bookMap">
+	 	SELECT  b.id AS b_id,b.usertour_id AS b_user_id,
+		b.total_money AS b_total_money,b.child_amount AS b_child_amount,b.aldult_amount AS b_aldult_amount,
+ 		b.child_nho_amount AS b_child_nho_amount,b.tour_id AS b_tour_id,b.date AS b_date
+  		FROM book AS b where b.id =  (SELECT Max(b.id) FROM book AS b)
+	</select>
+	
+	<select id="selectOne" resultMap="bookMap" parameterType="book">
+		SELECT  b.id AS b_id,b.usertour_id AS b_user_id,
+b.total_money AS b_total_money,b.child_amount AS b_child_amount,b.aldult_amount AS b_aldult_amount,
+ b.child_nho_amount AS b_child_nho_amount,b.tour_id AS b_tour_id,b.date AS b_date
+  FROM book AS b where id = #{id}
+	</select>
+	
+	
+	
+	
+	<delete id="delete" parameterType="book">
+		DELETE FROM book WHERE id =
+		#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,171 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+}
+
+.step__warnning{
+    color: rgba(0, 0, 0, 0.38);
+    font-size: 18px;
+  
+    font-weight: 500;
+}
+.step__warnning__circle{
+    
+    
+    font-size: 20px;
+    color: white;
+}
+.step__warnning__circle span{
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.38);
+  border-radius: 50%;
+ 
+
+    
+    
+    
+    
+}
+
+.step__warnning.active .step__warnning__circle  span:nth-child(1){
+    background-color: red;
+  
+}
+.step__warnning.active .step__warnning__title span{
+    color: black;
+
+ }
+ .step__warnning__line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .step__warnning__line__center {
+     width: 100%;
+     height: 1px;
+     border-bottom:1px dashed  rgba(0, 0, 0, 0.2);
+ }
+ /* Tour infomation */
+.tour__infomation{
+    font-size: 15px;
+    color: black;
+}
+.tour__infomation__title{
+    font-size: 22px;
+    color: red;
+    font-weight: 600;
+   
+}
+.tour__infomation__title{
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.tour__infomation__content__img img{
+    height: 180px;
+}
+.tour__infomation__content__detail__address{
+
+ 
+  
+}
+.tour__infomation__content__detail i{
+    margin-right: 5px;
+    color: rgba(0, 0, 0, 0.38);
+}
+.tour__infomation__content__detail__address p{
+    font-weight: 500;
+    border-top: 1px dashed  rgba(0, 0, 0, 0.2);
+    border-bottom: 1px dashed  rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+}
+.tour__infomation__content__detail__content div{
+    margin: 5px 0;
+}
+.tour__infomation__notify,.tour__contact__notify{
+    background-color: #f4f4f4;
+    margin-top: 10px;
+    border-left: 5px solid red;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.tour__infomation__notify__content{
+    padding: 15px 0 15px 10px;
+}
+
+/* tourprice */
+.tour__price{
+    margin-top: 50px;
+}
+.tour__price table tr td{
+    padding: 10px 5px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+.tour__price table tr th{
+    padding: 10px 5px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+.tour__price table{
+    margin-top: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+/* tour contact */
+.tour__contact label{
+    font-weight: 400;
+    color:rgba(0, 0, 0, 0.9);
+}
+.tour__contact span{
+    color: red;
+}
+.tour__contact textarea{
+    min-height: 100px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+    
+}
+.tour__contact__input{
+    padding: 8px 0;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+.tour__contact__input__user{
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.tour__contact__notify{
+    background-color: #f4f4f4;
+    margin-top: 10px;
+    border-left: 5px solid red;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: 0 auto;
+    padding: 10px;
+   
+}
+.tour__contact__notify p {
+    margin-bottom: 0;
+}
+
+.tour__contact__notify span{    
+    font-weight: 500;
+}
+/* tour list user */
+.tour__list__user__item {
+    border: 2px solid rgba(99, 99, 99, 0.2);
+ 
+}
+.tour__list__user__item__test__user p{
+    background-color: rgba(99, 99, 99, 0.2);
+}
+.tour__list__user__item__test__user p 
+,.tour__list__user__item__test__total p
+,.tour__list__user__item__test__price p{
+    padding: 15px 0 ;
+    margin-bottom: 0;
+    border-top:1px solid rgba(99, 99, 99, 0.2); 
+  
+
+}
+.tour_payment{
+    background-color: rgba(99, 99, 99, 0.2);
+    padding: 20px 10px 0;
+}

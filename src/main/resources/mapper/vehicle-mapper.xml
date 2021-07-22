@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Vehicle">
+	<resultMap type="vehicle" id="vehicleMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	<select id="getAll" parameterType="vehicle" resultType="vehicle">
+		SELECT * FROM vehicle
+	</select>
+		<select id="get" parameterType="vehicle" resultType="vehicle">
+		SELECT * FROM vehicle where id=#{id}
+	</select>
+	<insert id="insert" parameterType="vehicle">
+		INSERT INTO vehicle(NAME) VALUES(#{name})
+	</insert>
+	<update id="update" parameterType="vehicle">
+		UPDATE vehicle SET name=#{name} 
+		WHERE id=#{id}
+	</update>
+	<delete id="delete" parameterType="vehicle">
+		DELETE FROM vehicle WHERE id=#{id}
+	</delete>
+	
+	
+</mapper>
